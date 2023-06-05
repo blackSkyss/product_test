@@ -4,12 +4,6 @@ import 'package:provider/provider.dart';
 import '../providers/cart.dart';
 
 class CartItem extends StatelessWidget {
-  final String id;
-  final String productId;
-  final double price;
-  final int quantity;
-  final String title;
-
   CartItem(
     this.id,
     this.productId,
@@ -18,12 +12,18 @@ class CartItem extends StatelessWidget {
     this.title,
   );
 
+  final String id;
+  final double price;
+  final String productId;
+  final int quantity;
+  final String title;
+
   @override
   Widget build(BuildContext context) {
     return Dismissible(
       key: ValueKey(id),
       background: Container(
-        color: Theme.of(context).errorColor,
+        color: Theme.of(context).primaryColor,
         child: Icon(
           Icons.delete,
           color: Colors.white,

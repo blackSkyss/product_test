@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 class EditProductScreen extends StatefulWidget {
   const EditProductScreen({Key? key}) : super(key: key);
+
   static const routeName = '/edit-product';
 
   @override
@@ -12,11 +13,7 @@ class EditProductScreen extends StatefulWidget {
 }
 
 class _EditProductScreenState extends State<EditProductScreen> {
-  final _priceFocusNode = FocusNode();
   final _descriptionFocusNode = FocusNode();
-  final _imageUrlController = TextEditingController();
-  final _imageUrlFocusNode = FocusNode();
-  final _form = GlobalKey<FormState>();
   var _editedProduct = Product(
     id: null,
     title: '',
@@ -25,6 +22,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
     imageUrl: '',
   );
 
+  final _form = GlobalKey<FormState>();
+  final _imageUrlController = TextEditingController();
+  final _imageUrlFocusNode = FocusNode();
   var _initValues = {
     'title': '',
     'description': '',
@@ -34,12 +34,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   var _isInit = true;
   var _isLoading = false;
-
-  @override
-  void initState() {
-    _imageUrlFocusNode.addListener(_updateImageUrl);
-    super.initState();
-  }
+  final _priceFocusNode = FocusNode();
 
   @override
   void didChangeDependencies() {
@@ -76,6 +71,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
     _imageUrlController.dispose();
     _imageUrlFocusNode.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    _imageUrlFocusNode.addListener(_updateImageUrl);
+    super.initState();
   }
 
   void _updateImageUrl() {

@@ -3,13 +3,6 @@ import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
 class Product with ChangeNotifier {
-  final String? id;
-  final String title;
-  final String description;
-  final double price;
-  final String imageUrl;
-  bool isFavorite;
-
   Product({
     required this.id,
     required this.title,
@@ -19,10 +12,12 @@ class Product with ChangeNotifier {
     this.isFavorite = false,
   });
 
-  void _setFavValue(bool newValue) {
-    isFavorite = newValue;
-    notifyListeners();
-  }
+  final String description;
+  final String? id;
+  final String imageUrl;
+  bool isFavorite;
+  final double price;
+  final String title;
 
   Future<void> toggleFavoriteStatus(String token, String userId) async {
     final oldStatus = isFavorite;
@@ -45,5 +40,10 @@ class Product with ChangeNotifier {
     } catch (error) {
       _setFavValue(oldStatus);
     }
+  }
+
+  void _setFavValue(bool newValue) {
+    isFavorite = newValue;
+    notifyListeners();
   }
 }

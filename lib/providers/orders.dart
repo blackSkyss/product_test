@@ -4,26 +4,26 @@ import './cart.dart';
 import 'package:http/http.dart' as http;
 
 class OrderItem {
-  final String id;
-  final double amount;
-  final List<CartItem> products;
-  final DateTime datetime;
-
   OrderItem({
     required this.id,
     required this.amount,
     required this.products,
     required this.datetime,
   });
+
+  final double amount;
+  final DateTime datetime;
+  final String id;
+  final List<CartItem> products;
 }
 
 class Orders with ChangeNotifier {
-  List<OrderItem> _orders = [];
+  Orders(this.authToken, this.userId, this._orders);
 
   final String authToken;
   final String userId;
 
-  Orders(this.authToken, this.userId, this._orders);
+  List<OrderItem> _orders = [];
 
   List<OrderItem> get orders {
     return [..._orders];
@@ -35,7 +35,7 @@ class Orders with ChangeNotifier {
 
     final response = await http.get(Uri.parse(url));
     final List<OrderItem> loadedOrders = [];
-    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    final extractedData = json.decode(response.body) as Map<String, dynamic>?;
     if (extractedData == null) {
       return;
     }

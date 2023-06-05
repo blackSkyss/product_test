@@ -95,17 +95,24 @@ class AuthCard extends StatefulWidget {
 
 class _AuthCardState extends State<AuthCard>
     with SingleTickerProviderStateMixin {
-  final GlobalKey<FormState> _formKey = GlobalKey();
-  AuthMode _authMode = AuthMode.Login;
   Map<String, String> _authData = {
     'email': '',
     'password': '',
   };
-  var _isLoading = false;
-  final _passwordController = TextEditingController();
+
+  AuthMode _authMode = AuthMode.Login;
   late AnimationController _controller;
-  late Animation<Offset> _slideAnimation;
+  final GlobalKey<FormState> _formKey = GlobalKey();
+  var _isLoading = false;
   late Animation<double> _opacityAnimation;
+  final _passwordController = TextEditingController();
+  late Animation<Offset> _slideAnimation;
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 
   @override
   void initState() {
@@ -133,12 +140,6 @@ class _AuthCardState extends State<AuthCard>
       ),
     );
     // _heightAnimation.addListener(() => setState(() {}));
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 
   void _showErrorDialog(String message) {

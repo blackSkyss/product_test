@@ -9,8 +9,8 @@ class Badge extends StatelessWidget {
   }) : super(key: key);
 
   final Widget child;
-  final String value;
   final Color? color;
+  final String value;
 
   @override
   Widget build(BuildContext context) {

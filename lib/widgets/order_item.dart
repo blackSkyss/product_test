@@ -5,9 +5,9 @@ import 'dart:math';
 import '../providers/orders.dart' as ord;
 
 class OrderItem extends StatefulWidget {
-  final ord.OrderItem order;
-
   OrderItem(this.order);
+
+  final ord.OrderItem order;
 
   @override
   State<OrderItem> createState() => _OrderItemState();

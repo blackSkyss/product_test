@@ -7,6 +7,7 @@ import './edit_product_screen.dart';
 
 class UserProductScreen extends StatelessWidget {
   const UserProductScreen({Key? key}) : super(key: key);
+
   static const routeName = '/user-products';
 
   Future<void> _refreshProducts(BuildContext context) async {

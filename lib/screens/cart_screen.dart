@@ -6,6 +6,7 @@ import '../providers/orders.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({Key? key}) : super(key: key);
+
   static const routeName = '/cart';
 
   @override
@@ -75,6 +76,7 @@ class OrderButton extends StatefulWidget {
 
 class _OrderButtonState extends State<OrderButton> {
   var _isLoading = false;
+
   @override
   Widget build(BuildContext context) {
     return TextButton(
